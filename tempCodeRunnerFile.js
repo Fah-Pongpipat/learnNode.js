@@ -1,1 +1,3 @@
-const chalk = require('chalk');
+const morgan = require("morgan");
+
+app.use(morgan("combined"));

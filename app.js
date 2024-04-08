@@ -1,22 +1,15 @@
 const express = require("express");
+const app = express();
+const port = 3000;
+const debug = require("debug")("app");
+const morgan = require("morgan");
 
-let chalk;
-import("chalk")
-  .then((module) => {
-    chalk = module.default;
+app.use(morgan("combined"));
 
-    const app = express();
-    const port = 3000;
-    const debug = require("debug")("app");
+app.get("/", (req, res) => {
+  res.send("Hello Fah");
+});
 
-    app.get("/", (req, res) => {
-      res.send("Hello Fah");
-    });
-
-    app.listen(port, () => {
-      debug(`Server is running on port ${chalk.green(": ", port)}`);
-    });
-  })
-  .catch((err) => {
-    console.error("Error occurred while importing chalk:", err);
-  });
+app.listen(port, () => {
+  debug(`Server is running on port ${port}`);
+});
